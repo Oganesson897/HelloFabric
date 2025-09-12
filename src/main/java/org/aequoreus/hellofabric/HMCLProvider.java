@@ -7,13 +7,16 @@ import net.fabricmc.loader.impl.util.Arguments;
 
 import java.lang.reflect.Method;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class HMCLProvider implements GameProvider {
 
     private Path gameDir;
     private Arguments arguments;
+    private List<Path> jars = new ArrayList<>();
 
     @Override
     public String getGameId() {
@@ -86,6 +89,9 @@ public class HMCLProvider implements GameProvider {
 
     @Override
     public void unlockClassPath(FabricLauncher fabricLauncher) {
+        for (Path jar : this.jars) {
+            fabricLauncher.addToClassPath(jar);
+        }
     }
 
     @Override
