@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.aequoreus.hellofabric'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.spongepowered.org/maven/"
+    }
+    maven {
+        url "https://maven.fabricmc.net/"
+    }
+    flatDir {
+        dirs 'artifact'
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation "artifact:HMCL:3.6.17"
+
+    implementation "net.fabricmc:fabric-loader:0.13.0"
+    implementation "net.fabricmc:access-widener:2.1.0"
+    implementation "net.fabricmc:tiny-mappings-parser:0.2.2.14"
+    implementation "com.google.guava:guava:32.0.1-jre"
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation "org.ow2.asm:asm:9.2"
+    implementation "org.ow2.asm:asm-analysis:9.2"
+    implementation "org.ow2.asm:asm-commons:9.2"
+    implementation "org.ow2.asm:asm-tree:9.2"
+    implementation "org.ow2.asm:asm-util:9.2"
+}
+
+test {
+    useJUnitPlatform()
+}
